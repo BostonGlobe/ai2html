@@ -591,6 +591,10 @@ if (scriptEnvironment=="nyt") {
 	// Make a copy of the spreadsheet for yourself.
 	// Modify the settings to taste.
 var fonts = [
+	{"aifont":"Helvetica","family":"Helvetica, Arial, sans-serif","weight":"","style":""},
+	{"aifont":"Helvetica-Oblique","family":"Helvetica, Arial, sans-serif","weight":"","style":"italic"},
+	{"aifont":"BentonSans","family":"'Benton', Helvetica, Arial, sans-serif","weight":"400","style":""},
+	{"aifont":"BentonSans-Bold","family":"'Benton', Helvetica, Arial, sans-serif","weight":"700","style":""},
 	{"aifont":"ArialMT","family":"arial,helvetica,sans-serif","weight":"","style":""},
 	{"aifont":"Arial-BoldMT","family":"arial,helvetica,sans-serif","weight":"bold","style":""},
 	{"aifont":"Arial-ItalicMT","family":"arial,helvetica,sans-serif","weight":"","style":"italic"},
@@ -695,7 +699,7 @@ var currMin       = zeroPad(d.getMinutes(),2);
 var dateTimeStamp = currYear + "-" + currMonth + "-" + currDate + " - " + currHour + ":" + currMin;
 
 // user inputs, settings, etc
-var defaultFamily       = "nyt-franklin,arial,helvetica,sans-serif";
+var defaultFamily       = "'Benton',Helvetica,Arial,sans-serif";
 var defaultWeight       = "";
 var defaultStyle        = "";
 var defaultSize         = 13;
