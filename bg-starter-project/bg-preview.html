@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang='en' style='height: auto;'>
+    <head>
+        <title>The Boston Globe - graphic</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+        <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate' />
+        <meta http-equiv='Pragma' content='no-cache' />
+        <meta http-equiv='Expires' content='0' />
+
+        <style>
+            *{-moz-box-sizing:border-box;box-sizing:border-box}a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body,html{height:100%}a img{border:none}blockquote{quotes:none}blockquote:after,blockquote:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}caption,td,th{text-align:left;font-weight:400;vertical-align:middle}body{font-family:Georgia,Times New Roman,Times,serif;line-height:1.6}a{transition:color .1s;color:#59889d;text-decoration:none}a:active,a:focus,a:hover{color:#334f5b;text-decoration:none}.source-and-credit{clear:both;width:100%;overflow:hidden;margin-top:1em}.source-and-credit p{line-height:1.6;padding:0;margin:0;font-size:11px;text-align:left;float:none}.source-and-credit .source span{font-weight:700}.source-and-credit .credit span{color:#999;text-transform:uppercase;letter-spacing:.05em}@media (min-width:600px){.source-and-credit .source{float:left}.source-and-credit .credit{text-align:right;}}
+
+            /* Some styling for graphic head and intro */
+            .bg-pageHed {
+                font-size: 1.2rem
+                font-weight: bold;
+            }
+
+            .bg-pageIntro {
+                color: #777777;
+                font-size: 1rem;
+            }
+        </style>
+
+        <!-- UPDATE VERSION # IF YOU NEED TO REPUBLISH -->
+
+        <link rel='shortcut icon' href='https://www.bostonglobe.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/favicon.ico' />
+    </head>
+    <body style='height: auto;'>
+
+
+
+        <!-- *** DO NOT DELETE *** -->
+        <div id='globe-graphic-container' style='height: 100%; overflow: hidden;'>
+
+            <!--
+            ==========================
+            BEGIN: GRAPHIC CODE HERE
+            ==========================
+            -->
+
+            <!-- begin ai2html here DO NOT MODIFY THIS LINE -->
+            <div class="bg-ai2htmlPage">
+
+                <h1 class="bg-pageHed">{{ headline }}</h1>
+                <p class="bg-pageIntro">{{ leadin }}</p>
+                <div class="bg-graphicPartial">
+                    {{ ai2htmlPartial }}
+                </div>
+                <p class="bg-pageNotes">{{ notes }}</p>
+            </div>
+
+            <!-- end ai2html here DO NOT MODIFY THIS LINE -->
+
+            <div class='source-and-credit'>
+                <p class='source'><span>{{ sources }}</span></p>
+                <p class='credit'><span>{{ credit }}</span></p>
+            </div>
+            <!--
+            ==========================
+            END OF GRAPHIC CODE
+            ==========================
+            -->
+
+        </div>
+
+        <!-- (begin) put js libraries here -->
+        <!-- Custom JS -->
+        <script type="text/javascript">
+            (function() {
+                // only want one resizer on the page
+                if (document.documentElement.className.indexOf("g-resizer-v3-init") > -1) return;
+                document.documentElement.className += " g-resizer-v3-init";
+                // require IE9+
+                if (!("querySelector" in document)) return;
+                function resizer() {
+                    var elements = Array.prototype.slice.call(document.querySelectorAll(".g-artboard[data-min-width]")),
+                        widthById = {};
+                    elements.forEach(function(el) {
+                        var parent = el.parentNode,
+                            width = widthById[parent.id] || parent.getBoundingClientRect().width,
+                            minwidth = el.getAttribute("data-min-width"),
+                            maxwidth = el.getAttribute("data-max-width");
+                        widthById[parent.id] = width;
+                        if (+minwidth <= width && (+maxwidth >= width || maxwidth === null)) {
+                            el.style.display = "block";
+                        } else {
+                            el.style.display = "none";
+                        }
+                    });
+                    try {
+                        if (window.parent && window.parent.$) {
+                            window.parent.$("body").trigger("resizedcontent", [window]);
+                        }
+                    } catch(e) { console.log(e); }
+                }
+                document.addEventListener('DOMContentLoaded', resizer);
+                // feel free to replace throttle with _.throttle, if available
+                window.addEventListener('resize', throttle(resizer, 200));        
+                function throttle(func, wait) {
+                    // from underscore.js
+                    var _now = Date.now || function() { return new Date().getTime(); },
+                        context, args, result, timeout = null, previous = 0;
+                    var later = function() {
+                        previous = _now();
+                        timeout = null;
+                        result = func.apply(context, args);
+                        if (!timeout) context = args = null;
+                    };
+                    return function() {
+                        var now = _now(), remaining = wait - (now - previous);
+                        context = this;
+                        args = arguments;
+                        if (remaining <= 0 || remaining > wait) {
+                            if (timeout) {
+                                clearTimeout(timeout);
+                                timeout = null;
+                            }
+                            previous = now;
+                            result = func.apply(context, args);
+                            if (!timeout) context = args = null;
+                        } else if (!timeout) {
+                            timeout = setTimeout(later, remaining);
+                        }
+                        return result;
+                    };
+                }
+            })();
+        </script>
+
+        <!-- (end) -->
+
+        <!--
+        ============================
+        *** DO NOT GO BELOW HERE ***
+        ============================
+        -->
+
+
+        <!-- (begin) globe iframe embed -->
+        <script src='https://apps.bostonglobe.com/common/js/pym/pym-1.3.2.min.js'></script>
+        <script>
+            // version
+            if (window.console && console.log) console.log('-- globe iframe graphic v2.0.3 --');
+            (function() {
+                pymChild.sendMessage('ready', true);
+            })();
+        </script>
+        <!-- (end) globe iframe embed -->
+    </body>
+</html>

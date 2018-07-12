@@ -114,8 +114,8 @@ var nytBaseSettings = {
 
 var defaultBaseSettings = {
   settings_version: {defaultValue: scriptVersion, includeInSettingsBlock: true, includeInConfigFile: false},
-  create_promo_image: {defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false},
-  promo_image_width: {defaultValue: 1024, includeInSettingsBlock: false, includeInConfigFile: false},
+  create_promo_image: {defaultValue: "yes", includeInSettingsBlock: true, includeInConfigFile: false},
+  promo_image_width: {defaultValue: 1200, includeInSettingsBlock: false, includeInConfigFile: false},
   image_format: {defaultValue: ["auto"], includeInSettingsBlock: true, includeInConfigFile: false},
   write_image_files: {defaultValue: "yes", includeInSettingsBlock: false, includeInConfigFile: false},
   responsiveness: {defaultValue: "fixed", includeInSettingsBlock: true, includeInConfigFile: false},
@@ -186,8 +186,9 @@ var htmlCharacterCodes = [["\xA0","&nbsp;"], ["\xA1","&iexcl;"], ["\xA2","&cent;
 var fonts = [
   {"aifont":"Helvetica","family":"Helvetica, Arial, sans-serif","weight":"","style":""},
   {"aifont":"Helvetica-Oblique","family":"Helvetica, Arial, sans-serif","weight":"","style":"italic"},
-  {"aifont":"BentonSans","family":"'Benton', Helvetica, Arial, sans-serif","weight":"400","style":""},
+  {"aifont":"BentonSans-Regular","family":"'Benton', Helvetica, Arial, sans-serif","weight":"400","style":""},
   {"aifont":"BentonSans-Bold","family":"'Benton', Helvetica, Arial, sans-serif","weight":"700","style":""},
+  {"aifont":"BentonSans-RegularItalic","family":"'Benton', Helvetica, Arial, sans-serif","weight":"400","style":"italic"},
   {"aifont":"ArialMT","family":"arial,helvetica,sans-serif","weight":"","style":""},
   {"aifont":"Arial-BoldMT","family":"arial,helvetica,sans-serif","weight":"bold","style":""},
   {"aifont":"Arial-ItalicMT","family":"arial,helvetica,sans-serif","weight":"","style":"italic"},
@@ -319,7 +320,7 @@ var cssPrecision = 4;
 // ================================
 // Global variable declarations
 // ================================
-var nameSpace = "g-"; // TODO: add to settings
+var nameSpace = "bg-"; // TODO: add to settings
 
 // vars to hold warnings and informational messages at the end
 var feedback = [];
@@ -842,6 +843,7 @@ function pathSplit(path) {
   var filename = parts.pop();
   return [parts.join('/'), filename];
 }
+
 
 // ======================================
 // Illustrator specific utility functions
